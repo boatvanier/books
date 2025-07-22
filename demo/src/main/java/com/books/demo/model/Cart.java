@@ -24,4 +24,10 @@ public class Cart {
     private Book book;
 
     private Integer quantity;
+
+    public Cart(User user, Book book) {
+        this.user = user;
+        this.book = book;
+        this.quantity = 1;
+    }
 }
