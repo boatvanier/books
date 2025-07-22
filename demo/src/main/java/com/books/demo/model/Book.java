@@ -20,4 +20,11 @@ public class Book {
     private String author;
     private Double price;
     private Integer stock;
+
+    public Book(String title, String author, Double price, Integer stock) {
+        this.title = title;
+        this.author = author;
+        this.price = price;
+        this.stock = stock;
+    }
 }
