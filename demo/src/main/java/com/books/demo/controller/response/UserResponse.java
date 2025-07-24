@@ -11,11 +11,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserResponse {
+    Long userId;
     String name;
     String email;
 
     public static UserResponse toResponse(User user){
-        return new UserResponse(String.format("%s %s", user.getFirstName(), user.getLastName()),
-        user.getEmail());
+        return new UserResponse(user.getId(),
+                String.format("%s %s", user.getFirstName(), user.getLastName()),
+                user.getEmail());
     }
 }

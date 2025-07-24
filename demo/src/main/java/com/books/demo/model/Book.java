@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity
 @Table(name="books")
 @Getter
@@ -20,6 +22,24 @@ public class Book {
     private String author;
     private Double price;
     private Integer stock;
+
+  /**
+   * CREATE TABLE IF NOT EXISTS public.likes
+   * (
+   * id serial primary key,
+   * user_id integer not null,
+   * book_id integer not null,
+   * constraint fk_user_id foreign key(user_id) references users(id),
+   * constraint fk_book_id foreign key(book_id) references books(id),
+   * unique(user_id, book_id)
+   * )
+   */
+  @ManyToMany
+  @JoinTable(
+      name = "likes",
+      joinColumns = @JoinColumn(name = "book_id"),
+      inverseJoinColumns = @JoinColumn(name = "user_id"))
+  private Set<User> likes;
 
     public Book(String title, String author, Double price, Integer stock) {
         this.title = title;
