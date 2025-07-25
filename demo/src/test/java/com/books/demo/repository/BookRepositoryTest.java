@@ -11,6 +11,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
@@ -21,14 +22,14 @@ public class BookRepositoryTest {
 
     @Test
     public void bookRepository_FindByTitleContaining_ReturnsBook(){
-        Book book = new Book("testTitle", "testAuthor", 12.56, 100);
-        repository.save(book);
+        Book book1 = new Book("testTitle1", "testAuthor1", 12.56, 100);
+        Book book2 = new Book("testTitle2", "testAuthor2", 12.56, 100);
+        repository.save(book1);
+        repository.save(book2);
 
         List<Book> books = repository.findByTitleContaining("testTitle");
 
-        System.out.print(books);
-        assertEquals(1, books.size());
-        assertEquals("testTitle", books.getFirst().getTitle());
-
+        assertEquals(2, books.size());
+        assertTrue(books.contains(book1));
     }
 }
