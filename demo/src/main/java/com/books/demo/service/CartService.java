@@ -6,7 +6,9 @@ import com.books.demo.model.User;
 import com.books.demo.repository.BookJpaRepository;
 import com.books.demo.repository.CartJPARepository;
 import com.books.demo.repository.UserJPARepository;
+import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -57,5 +59,17 @@ public class CartService {
 
         cart.setQuantity(quantity);
         cartJPARepository.save(cart);
+    }
+
+
+    @Transactional
+    public void delete(Long userId, Long bookId) {
+        cartJPARepository.deleteCartItem(userId, bookId);
+    }
+
+    public void clearCart(Long userId) {
+        User user = userJPARepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("user is not found"));
+        cartJPARepository.deleteByUser(user);
     }
 }

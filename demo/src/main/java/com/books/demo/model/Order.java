@@ -30,4 +30,8 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrderItem> orderItems = new HashSet<>();
 
+    public void addItem(OrderItem item) {
+        orderItems.add(item);
+        item.setOrder(this);
+    }
 }

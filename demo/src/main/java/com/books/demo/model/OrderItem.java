@@ -26,4 +26,10 @@ public class OrderItem {
 
     private int quantity;
     private double priceAtPurchase;
+
+    public OrderItem(Book book, int quantity, double priceAtPurchase) {
+        this.book = book;
+        this.quantity = quantity;
+        this.priceAtPurchase = priceAtPurchase;
+    }
 }

@@ -40,4 +40,9 @@ public class CartController {
         cartService.updateCart(userId, bookId, cartRequest.getQuantity());
     }
 
+    @DeleteMapping("/{userId}/books/{bookId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteCartItem(@PathVariable Long userId, @PathVariable Long bookId){
+        cartService.delete(userId, bookId);
+    }
 }

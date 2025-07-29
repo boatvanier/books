@@ -1,12 +1,10 @@
 package com.books.demo.controller;
 
+import com.books.demo.controller.request.OrderRequest;
 import com.books.demo.controller.response.OrderResponse;
 import com.books.demo.service.OrderService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +28,11 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getOrder(orderId)
                 .map(OrderResponse::toResponse)
                 .orElse(null));
+    }
+
+    @PostMapping
+    public ResponseEntity<Long> placeOrder(@RequestBody OrderRequest order){
+        return ResponseEntity.ok(orderService.placeOrder(order.getUserId()));
     }
 
 }
