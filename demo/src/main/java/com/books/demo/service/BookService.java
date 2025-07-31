@@ -38,5 +38,9 @@ public class BookService {
         repository.save(book);
     }
 
+    public void complicatedMethod(){
+        repository.complicatedMethod();
+    }
+
 }
 
