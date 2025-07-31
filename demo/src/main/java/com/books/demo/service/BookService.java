@@ -16,17 +16,16 @@ public class BookService {
         this.repository = repository;
     }
 
-    public List<Book> getBooks() {
-        return repository.findAll();
+    public List<Book> getBooks(String title) {
+        if (title == null || title.isBlank())
+         return repository.findAll();
+        return repository.findByTitleContaining(title);
     }
 
     public Optional<Book> getBook(Long bookId){
         return repository.findById(bookId);
     }
 
-    public List<Book> getBooksByTitle(String title){
-        return repository.findByTitleContaining(title);
-    }
     public void createBook(@NonNull String title, String author, double price, int stock){
         repository.save(new Book(title, author, price, stock));
     }

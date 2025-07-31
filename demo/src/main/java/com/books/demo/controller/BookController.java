@@ -25,13 +25,7 @@ public class BookController {
 
     @GetMapping
     public ResponseEntity<List<BookResponse>> getBooks(@RequestParam(name="title", required = false) String title){
-        if (title == null || title.isBlank())
-            return ResponseEntity.ok(bookService.getBooks()
-                    .stream()
-                    .map(BookResponse::toResponse)
-                    .toList());
-
-        return ResponseEntity.ok(bookService.getBooksByTitle(title)
+        return ResponseEntity.ok(bookService.getBooks(title)
                 .stream()
                 .map(BookResponse::toResponse)
                 .toList());
