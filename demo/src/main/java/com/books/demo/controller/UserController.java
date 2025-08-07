@@ -4,9 +4,12 @@ import java.util.List;
 
 import com.books.demo.controller.response.UserResponse;
 import com.books.demo.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Users", description = "User management APIs")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class UserController {
     private final UserService service;

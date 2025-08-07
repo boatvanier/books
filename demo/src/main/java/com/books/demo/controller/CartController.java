@@ -4,6 +4,7 @@ import com.books.demo.controller.request.CartCreateRequest;
 import com.books.demo.controller.request.CartUpdateRequest;
 import com.books.demo.controller.response.CartResponse;
 import com.books.demo.service.CartService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "Cart", description = "Cart management APIs")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/carts")
 public class CartController {

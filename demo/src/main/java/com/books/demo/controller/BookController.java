@@ -5,6 +5,7 @@ import com.books.demo.controller.request.CreateGroup;
 import com.books.demo.controller.request.UpdateGroup;
 import com.books.demo.controller.response.BookResponse;
 import com.books.demo.service.BookService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "Books", description = "Book management APIs")
+@CrossOrigin(origins = "http://localhost:3000")
 @Validated
 @RestController
 @RequestMapping("/api/books")
@@ -41,7 +44,11 @@ public class BookController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void createBook(@RequestBody @Validated(CreateGroup.class) BookRequest bookRequest){
-        bookService.createBook(bookRequest.getTitle(),bookRequest.getAuthor(),bookRequest.getPrice(),bookRequest.getStock());
+        bookService.createBook(bookRequest.getTitle(),
+                bookRequest.getAuthor(),
+                bookRequest.getPrice(),
+                bookRequest.getStock(),
+                bookRequest.getImage());
     }
 
     @PutMapping("/{bookId}")

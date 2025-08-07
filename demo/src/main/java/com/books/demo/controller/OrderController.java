@@ -3,11 +3,14 @@ package com.books.demo.controller;
 import com.books.demo.controller.request.OrderRequest;
 import com.books.demo.controller.response.OrderResponse;
 import com.books.demo.service.OrderService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "Orders", description = "Order management APIs")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/orders")
 public class OrderController {

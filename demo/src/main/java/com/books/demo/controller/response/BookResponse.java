@@ -18,6 +18,7 @@ public class BookResponse {
     private int stock;
     private List<UserResponse> likedUsers;
     private int likes;
+    private String image;
 
     public static BookResponse toResponse(Book book) {
         return new BookResponse(book.getId(),
@@ -26,6 +27,7 @@ public class BookResponse {
                 book.getPrice(),
                 book.getStock(),
                 book.getLikes().stream().map(UserResponse::toResponse).toList(),
-                book.getLikes().size());
+                book.getLikes().size(),
+                book.getImage());
     }
 }

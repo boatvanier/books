@@ -18,4 +18,6 @@ public class BookRequest {
     private double price;
     @NotNull(groups = UpdateGroup.class)
     private int stock;
+
+    private String image;
 }

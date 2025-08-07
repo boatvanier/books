@@ -22,6 +22,7 @@ public class Book {
     private String author;
     private Double price;
     private Integer stock;
+    private String image;
 
   /**
    * CREATE TABLE IF NOT EXISTS public.likes
@@ -41,10 +42,11 @@ public class Book {
       inverseJoinColumns = @JoinColumn(name = "user_id"))
   private Set<User> likes;
 
-    public Book(String title, String author, Double price, Integer stock) {
+    public Book(String title, String author, Double price, Integer stock, String image) {
         this.title = title;
         this.author = author;
         this.price = price;
         this.stock = stock;
+        this.image = image;
     }
 }

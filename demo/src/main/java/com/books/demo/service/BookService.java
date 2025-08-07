@@ -26,8 +26,8 @@ public class BookService {
         return repository.findById(bookId);
     }
 
-    public void createBook(@NonNull String title, String author, double price, int stock){
-        repository.save(new Book(title, author, price, stock));
+    public void createBook(@NonNull String title, String author, double price, int stock, String image){
+        repository.save(new Book(title, author, price, stock, image));
     }
     public void updateBook(@NonNull Long bookId, @NonNull String title, @NonNull String author, double price, int stock) {
         Book book = repository.findById(bookId).orElseThrow(()->new IllegalArgumentException("book is not found"));
@@ -37,10 +37,5 @@ public class BookService {
         book.setStock(stock);
         repository.save(book);
     }
-
-    public void complicatedMethod(){
-        repository.complicatedMethod();
-    }
-
 }
 
