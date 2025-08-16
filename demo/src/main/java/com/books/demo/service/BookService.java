@@ -37,5 +37,9 @@ public class BookService {
         book.setStock(stock);
         repository.save(book);
     }
+
+    public void delete(Long bookId) {
+        repository.deleteById(bookId);
+    }
 }
 

@@ -60,5 +60,9 @@ public class BookController {
                 bookRequest.getPrice(),
                 bookRequest.getStock());
     }
-
+    @DeleteMapping("/{bookId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteBook(@PathVariable Long bookId){
+        bookService.delete(bookId);
+    }
 }
