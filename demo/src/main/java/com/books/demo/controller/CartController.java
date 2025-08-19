@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Tag(name = "Cart", description = "Cart management APIs")
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/carts")
 public class CartController {
