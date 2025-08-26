@@ -6,6 +6,10 @@ import java.util.Optional;
 
 import com.books.demo.model.User;
 import com.books.demo.repository.UserJPARepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -24,7 +28,17 @@ public class UserService {
     }
 
     public List<User> findAllUsers(){
+
         return repository.findAll();
+    }
+
+    public Page<User> findUsers(String keywords, int page, int size, String sort){
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sort).descending());
+
+        if (keywords == null || keywords.isBlank() )
+            return repository.findAll(pageable);
+
+        return repository.findByKeywords(keywords, pageable);
     }
 
     public Optional<User> findUserByUserId(Long userId) {

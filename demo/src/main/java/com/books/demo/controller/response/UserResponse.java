@@ -14,10 +14,12 @@ public class UserResponse {
     Long userId;
     String name;
     String email;
+    String userName;
 
     public static UserResponse toResponse(User user){
         return new UserResponse(user.getId(),
                 String.format("%s %s", user.getFirstName(), user.getLastName()),
-                user.getEmail());
+                user.getEmail(),
+                user.getUserName());
     }
 }
