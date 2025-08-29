@@ -56,7 +56,7 @@ INSERT INTO users (user_name, email, password, role, first_name, last_name)
 VALUES 
   ('alice', 'alice@example.com', 'password123', 'CUSTOMER','alice', 'brown'),
   ('bob', 'bob@example.com', 'securepass', 'CUSTOMER','bob','white'),
-  ('admin', 'admin@bookstore.com', 'adminpass', 'ADMIN','admin','admin');
+  ('admin', 'admin@bookstore.com', '"$2a$12$m8tepDr9AqgHmsSJfCIKZOH41Lx.ZwJSiHjQBdTU4tYaHkFXfLHly"', 'ADMIN','admin','admin');
 
 -- 2. Books
 INSERT INTO books (title, author, price, stock)

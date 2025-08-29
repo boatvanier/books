@@ -22,8 +22,8 @@ public class BookRepositoryTest {
 
     @Test
     public void bookRepository_FindByTitleContaining_ReturnsBook(){
-        Book book1 = new Book("testTitle1", "testAuthor1", 12.56, 100);
-        Book book2 = new Book("testTitle2", "testAuthor2", 12.56, 100);
+        Book book1 = new Book("testTitle1", "testAuthor1", 12.56, 100, "");
+        Book book2 = new Book("testTitle2", "testAuthor2", 12.56, 100, "");
         repository.save(book1);
         repository.save(book2);
 
