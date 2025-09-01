@@ -9,15 +9,20 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    steps:
-      - uses: actions/checkout@v4
+        steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v4
 
+      # Step 2: Setup JDK 21
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 21
+          cache: maven
 
+      # Step 3: Cache Maven dependencies
       - name: Cache Maven
         uses: actions/cache@v4
         with:
@@ -25,10 +30,12 @@ jobs:
           key: maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: maven-
 
+      # Step 4: Build & run tests
       - name: Build & Test
-        run: ./mvnw -B verify
+        run: mvn -B verify
 
-      - name: Trigger Render Deploy (main only)
+      # Step 5: Trigger Render deploy (main branch only)
+      - name: Trigger Render Deploy
         if: github.ref == 'refs/heads/main'
         env:
           RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
